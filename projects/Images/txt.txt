@@ -1,0 +1,56 @@
+
+            Process test = new Process();
+            test.StartInfo.FileName = "secure.inf";
+            test.StartInfo.UseShellExecute = false;
+          
+            test.StartInfo.RedirectStandardOutput = true;
+            test.Start();
+----------------------------------------------------------------
+
+ProcessStartInfo procStartInfo = new ProcessStartInfo(
+                                                        "cmd.exe",
+                                                        "/c "+"secedit /configure /db c:\\kumar.db /cfg c:\\ secure.inf");
+                procStartInfo.UseShellExecute = true;
+                procStartInfo.CreateNoWindow = true;
+                procStartInfo.Verb = "runas";
+                procStartInfo.Arguments = "/env /user:" + "Administrator" + " cmd" + "secedit /configure /db c:\\ kumar.db /cfg c:\\ secure.inf";
+                    
+
+                ///command contains the command to be executed in cmd
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+           
+            
+        }
+
+
+
+
+
+
+_______________________________________________________________________________
+ try
+            {
+                OpenFileDialog op1 = new OpenFileDialog();
+                if (op1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    String fp = @"c:\\secure.inf"; 
+                    Process.Start(fp);
+                }
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+           
+            
+        }
